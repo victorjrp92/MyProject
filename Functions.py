@@ -1,4 +1,9 @@
-# This is  funcion to clean cells and takes specific character from it 
+# This is  funcion to clean cells and takes specific caracteristics from it 
+import pandas as pd
+import numpy as np
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 
 import re
 
@@ -16,7 +21,8 @@ def clean_column(df, column_name, match_string):
     df.drop(columns=column_name, inplace=True)
     return df
 
-For example, you can use the function to clean the "Species" column with the match string "white shark|Tiger shark|Bull shark" like this:
+# For example, you can use the function to clean the "Species" column with the match string "white shark|Tiger shark|Bull shark" like this:
+
 def clean_species_column(df):
     # Create a regular expression pattern that matches white shark, Tiger shark or Bull shark
     pattern = r'(white shark|Tiger shark|Bull shark)'
@@ -30,11 +36,11 @@ def clean_species_column(df):
     #Delete the original column
     df.drop(columns='Species', inplace=True)
     return df
+pass
 
 
 
-
-attacks = pd.read_csv("/Users/victorramos/documents/ironhack/Proyectos Ironhack/attacks.csv", encoding='latin1')
+attacks = pd.read_csv("/Users/victorramos/documents/ironhack/Proyectos Ironhack/MyProject/data/attacks.csv", encoding='latin1')
 attacks = clean_column(attacks, 'Species', 'white shark|Tiger shark|Bull shark')
 attacks = clean_column(attacks, 'Country', 'US|Australia')
 
