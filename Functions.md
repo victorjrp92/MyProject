@@ -17,6 +17,22 @@ def clean_column(df, column_name, match_string):
     return df
 
 For example, you can use the function to clean the "Species" column with the match string "white shark|Tiger shark|Bull shark" like this:
+def clean_species_column(df):
+    # Create a regular expression pattern that matches white shark, Tiger shark or Bull shark
+    pattern = r'(white shark|Tiger shark|Bull shark)'
+
+    # Convert the "Species" column to lowercase
+    df['Species'] = df['Species'].str.lower()
+
+    # Extract the matched substrings from the "Species" column and store them in a new column "Species cleaned"
+    df['Species cleaned'] = df['Species'].str.extract(pattern, expand=True)
+
+    #Delete the original column
+    df.drop(columns='Species', inplace=True)
+    return df
+
+
+
 
 attacks = pd.read_csv("/Users/victorramos/documents/ironhack/Proyectos Ironhack/attacks.csv", encoding='latin1')
 attacks = clean_column(attacks, 'Species', 'white shark|Tiger shark|Bull shark')
